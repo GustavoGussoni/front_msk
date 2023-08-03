@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@layer components {
+  .body {
+    @apply bg-gradient-to-b from-blue-900 from-10% to-gray-900 to-80% text-gray-100;
+  }
+}
