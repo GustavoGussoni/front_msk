@@ -1,13 +1,13 @@
 import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
 import { useEffect, useRef } from "react";
 import { TbMusic, TbPlayerSkipBack, TbPlayerSkipForward, TbPlayerStop } from "react-icons/tb";
+import { usePlayer } from "@/contexts/playerContext";
 import { BsFillPlayCircleFill } from "react-icons/bs";
 import Image from "next/image";
-import { usePlayer } from "@/contexts/playerContext";
 
 const secondsToMinutes = (sec: number | undefined) => {
   if (!sec) return "00:00";
-
   sec = Math.trunc(+sec);
   const minutes = Math.floor(sec / 60);
   const seconds = sec % 60;
@@ -31,7 +31,8 @@ const Player = () => {
     });
 
     audioRef.current.addEventListener("ended", (e: any) => {
-      skipNext(new URL(e.target.src).pathname);
+      console.log(new URL(e.target.src).pathname);
+      skipNext(`https://res.cloudinary.com${new URL(e.target.src).pathname}`);
     });
 
     audioRef.current.addEventListener("canplay", () => {
@@ -39,6 +40,12 @@ const Player = () => {
     });
 
     audioRef.current.addEventListener("loadedmetadata", (e: any) => {
+      setCurrentMusic({
+        curTime: e.target.currentTime,
+        duration: e.target.duration
+      });
+    });
+    audioRef.current.addEventListener("timeupdate", (e: any) => {
       setCurrentMusic({
         curTime: e.target.currentTime
       });

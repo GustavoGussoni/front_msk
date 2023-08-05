@@ -1,3 +1,4 @@
+import { usePlayer } from "@/contexts/playerContext";
 import { musicData } from "@/schemas/music.schema";
 import Image from "next/image";
 import { BsFillPlayCircleFill } from "react-icons/bs";
@@ -8,7 +9,9 @@ interface IMusicContainerProps {
 }
 
 const MusicContainer = ({ music }: IMusicContainerProps) => {
-  const isPlaying = false;
+  const { setCurrentMusic, currentMusic } = usePlayer();
+  const isPlaying = currentMusic.music_url === music.music_url;
+
   return (
     <div className="w-4/5 h-3/4 min-w-[1502px] min-h-[803] bg-pink-800 rounded-lg flex flex-row pb-8 pt-28">
       <div className="flex flex-col justify-center w-2/4 pl-32">
@@ -22,7 +25,7 @@ const MusicContainer = ({ music }: IMusicContainerProps) => {
             alt="Capa do album"
           />
           <div className="w-[30rem] bg-gray-100 flex justify-center rounded-b-lg">
-            <button>
+            <button onClick={() => setCurrentMusic(music, true)}>
               {isPlaying ? (
                 <TbPlayerStop className="fill-pink-500 w-10 h-10 m-1" />
               ) : (
