@@ -1,3 +1,4 @@
+import { useAuth } from "@/contexts/authContext";
 import { UserData, userSchema } from "@/schemas/user.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
@@ -8,8 +9,10 @@ const RegisterForm = () => {
     resolver: zodResolver(userSchema)
   });
 
-  const onFormSubmit = (formData: UserData) => {
-    console.log(formData);
+  const { register: registerUser } = useAuth();
+
+  const onFormSubmit = (registerData: UserData) => {
+    registerUser(registerData);
   };
 
   return (
