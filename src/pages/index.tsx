@@ -3,6 +3,7 @@ import { usePlayer } from "@/contexts/playerContext";
 import { musicData } from "@/schemas/music.schema";
 import api from "@/services/api";
 import { GetServerSideProps, NextPage } from "next";
+import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 interface HomeProps {
@@ -11,15 +12,26 @@ interface HomeProps {
 
 const Home: NextPage<HomeProps> = ({ musics }) => {
   const { setPlaylist } = usePlayer();
+  const router = useRouter();
   useEffect(() => {
     setPlaylist(musics);
   }, []);
   return (
-    <main
-      className={`body grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4 min-h-screen justify-items-center p-24`}>
-      {musics.map((music) => {
-        return <Card key={music.id} music={music}></Card>;
-      })}
+    <main className={`body  min-h-screen p-6 `}>
+      <div className="flex justify-end">
+        <button
+          className="btn-primary mb-6"
+          onClick={() => {
+            router.push("/upload");
+          }}>
+          Nova música
+        </button>
+      </div>
+      <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4 justify-items-center">
+        {musics.map((music) => {
+          return <Card key={music.id} music={music} />;
+        })}
+      </div>
     </main>
   );
 };

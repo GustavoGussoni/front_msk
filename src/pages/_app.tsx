@@ -1,4 +1,5 @@
 import { AuthProvider } from "@/contexts/authContext";
+import { MusicProvider } from "@/contexts/musicContext";
 import { PlayerProvider } from "@/contexts/playerContext";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
@@ -22,7 +23,9 @@ export default function App({ Component, pageProps }: AppProps) {
       />
       <AuthProvider>
         <PlayerProvider>
-          <Component {...pageProps} />
+          <MusicProvider>
+            <Component {...pageProps} />
+          </MusicProvider>
         </PlayerProvider>
       </AuthProvider>
     </>
