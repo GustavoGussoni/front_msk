@@ -28,7 +28,7 @@ const Music: NextPage<MusicProps> = ({ music }: MusicProps) => {
 
 export const getStaticPaths = async () => {
   return {
-    paths: [{ params: { id: "c55eee62-c059-4f6f-9004-db47b5252bda" } }],
+    paths: [{ params: { id: "7088eb85-e5d6-44b7-871e-e09fa7768416" } }],
     fallback: "blocking"
   };
 };
