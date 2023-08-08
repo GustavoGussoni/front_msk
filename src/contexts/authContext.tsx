@@ -1,9 +1,9 @@
+import Toast from "@/components/toast";
 import { LoginData, UserData } from "@/schemas/user.schema";
 import api from "@/services/api";
 import { useRouter } from "next/router";
 import { setCookie } from "nookies";
 import { ReactNode, createContext, useContext } from "react";
-import { toast } from "react-toastify";
 
 interface Props {
   children: ReactNode;
@@ -25,30 +25,12 @@ export const AuthProvider = ({ children }: Props) => {
     api
       .post("/users", userData)
       .then(() => {
-        toast.success("Usuário cadastrado com sucesso!", {
-          position: "top-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          draggable: true,
-          pauseOnHover: true,
-          progress: undefined,
-          theme: "light"
-        });
+        Toast({ message: "Usuário cadastrado com sucesso!", isSucess: true });
         router.push("/login");
       })
       .catch((err) => {
         console.log(err);
-        toast.error("Erro ao criar usuário, tente um email diferente.", {
-          position: "top-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          draggable: true,
-          pauseOnHover: true,
-          progress: undefined,
-          theme: "light"
-        });
+        Toast({ message: "Erro ao criar usuário, tente um email diferente." });
       });
   };
 
@@ -62,30 +44,12 @@ export const AuthProvider = ({ children }: Props) => {
         });
       })
       .then(() => {
-        toast.success("Login realizado com sucesso!", {
-          position: "top-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          draggable: true,
-          pauseOnHover: true,
-          progress: undefined,
-          theme: "light"
-        });
+        Toast({ message: "Login realizado com sucesso! Redirecionando...", isSucess: true });
         router.push("/");
       })
       .catch((err) => {
         console.log(err);
-        toast.error("Erro ao logar! E-mail ou senha inválidos.", {
-          position: "top-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          draggable: true,
-          pauseOnHover: true,
-          progress: undefined,
-          theme: "light"
-        });
+        Toast({ message: "Erro ao logar! E-mail ou senha inválidos." });
       });
   };
 

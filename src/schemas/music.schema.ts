@@ -11,6 +11,14 @@ export const musicSchema = z.object({
   music_url: z.string()
 });
 
+export const musicSchemaRequest = musicSchema.omit({
+  id: true,
+  cover_image: true,
+  music_url: true
+});
+
+export type musicRequest = z.infer<typeof musicSchemaRequest>;
+
 export type musicData = z.infer<typeof musicSchema>;
 
 export interface CurrentMusicType extends musicData {
