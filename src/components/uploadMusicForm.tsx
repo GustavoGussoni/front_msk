@@ -18,7 +18,7 @@ const UploadMusicForm = () => {
   const { getRootProps, getInputProps } = dropzone;
 
   return (
-    <div className="container w-1/3 min-w-fit bg-gray-800 flex justify-center">
+    <div className="container w-3/4 min-w-[1393px] bg-gray-800 flex justify-center">
       <div>
         <p className="text-4xl my-6 font-semibold text-center">Salvar música</p>
         <div className="flex flex-row justify-center mb-6">
