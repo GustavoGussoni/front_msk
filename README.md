@@ -1,7 +1,7 @@
 <h3>
   MVP - Music App
 </h3>
-<p>A aplicação é um site para fazer upload de músicas. Foi criada com o objetivo de ter um local onde pode-se guardar as próprias músicas on-line, bem como ouvir as músicas de outros usuários. Ao clicar em "Nova música", o usuário é direcionado para a tela de Login. Caso não tenha cadastro, é possível efetuar o cadastro na hora. Os campos de preenchimento possuem verificação com mensagens personalizadas e a aplicação também retorna alertas personalizados de erro e sucesso. 
+<p>A aplicação é um site para fazer upload de músicas. Foi criada com o objetivo de ter um local onde armazerar as próprias músicas on-line, bem como ouvir as músicas que outros usuários cadastraram. Ao clicar em "Nova música", o usuário é direcionado para a tela de Login. Caso não tenha cadastro, é possível efetuar o cadastro na hora. Os campos de preenchimento possuem verificação com mensagens personalizadas e a aplicação também retorna alertas personalizados de erro e sucesso. 
 </p>
 
 <p align="center">
