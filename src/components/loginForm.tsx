@@ -5,8 +5,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useAuth } from "@/contexts/authContext";
 
 const LoginForm = () => {
-  const { register, handleSubmit } = useForm<LoginData>({
-    resolver: zodResolver(loginSchema)
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { isValid, errors }
+  } = useForm<LoginData>({
+    resolver: zodResolver(loginSchema),
+    mode: "onBlur"
   });
 
   const { login } = useAuth();
@@ -30,6 +36,7 @@ const LoginForm = () => {
               className="user-form-input"
               {...register("email")}
             />
+            {errors.email && <span className="text-red-500">{errors.email.message}</span>}
           </div>
         </div>
 
@@ -44,6 +51,7 @@ const LoginForm = () => {
               className="user-form-input"
               {...register("password")}
             />
+            {errors.password && <span className="text-red-500">{errors.password.message}</span>}
           </div>
         </div>
 

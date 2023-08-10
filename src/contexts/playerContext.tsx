@@ -1,7 +1,7 @@
 import Player from "@/components/player";
 import { CurrentMusicType, musicData } from "@/schemas/music.schema";
 
-import { ReactNode, createContext, useContext, useState } from "react";
+import { MutableRefObject, ReactNode, createContext, useContext, useRef, useState } from "react";
 
 interface Props {
   children: ReactNode;
@@ -12,6 +12,7 @@ interface PlayerProviderData {
   setCurrentMusic: (cm: Partial<CurrentMusicType>, replace?: boolean) => void;
   playList: musicData[];
   setPlaylist: (data: musicData[]) => void;
+  audioRef: MutableRefObject<HTMLAudioElement | undefined>;
 }
 
 const defaultMusic: CurrentMusicType = {
@@ -31,7 +32,7 @@ const PlayerContext = createContext<PlayerProviderData>({} as PlayerProviderData
 export const PlayerProvider = ({ children }: Props) => {
   const [musics, setMusics] = useState<musicData[]>([]);
   const [current, setCurrent] = useState<CurrentMusicType>(defaultMusic);
-
+  const audioRef = useRef<HTMLAudioElement>();
   const setCurrentMusic = (music: Partial<CurrentMusicType>, replace = false) => {
     if (replace && music.music_url !== current.music_url) {
       setCurrent(music as CurrentMusicType);
@@ -42,7 +43,13 @@ export const PlayerProvider = ({ children }: Props) => {
 
   return (
     <PlayerContext.Provider
-      value={{ currentMusic: current, setCurrentMusic, playList: musics, setPlaylist: setMusics }}>
+      value={{
+        audioRef,
+        currentMusic: current,
+        setCurrentMusic,
+        playList: musics,
+        setPlaylist: setMusics
+      }}>
       {children}
       {current.music_url && <Player />}
     </PlayerContext.Provider>
