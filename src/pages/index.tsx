@@ -1,4 +1,5 @@
 import Card from "@/components/card";
+import Header from "@/components/header";
 import { usePlayer } from "@/contexts/playerContext";
 import { musicData } from "@/schemas/music.schema";
 import api from "@/services/api";
@@ -18,7 +19,8 @@ const Home: NextPage<HomeProps> = ({ musics }) => {
   }, []);
   return (
     <main className={`body  min-h-screen p-6 `}>
-      <div className="flex justify-end">
+      <div className="flex justify-between content-center">
+        <Header />
         <button
           className="btn-primary mb-6"
           onClick={() => {
@@ -27,7 +29,7 @@ const Home: NextPage<HomeProps> = ({ musics }) => {
           Nova música
         </button>
       </div>
-      <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4 justify-items-center">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 justify-items-center">
         {musics.map((music) => {
           return <Card key={music.id} music={music} />;
         })}

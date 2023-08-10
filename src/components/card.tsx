@@ -10,7 +10,8 @@ interface ICardProps {
 
 const Card = ({ music }: ICardProps) => {
   const { setCurrentMusic, currentMusic } = usePlayer();
-  const isPlaying = currentMusic.music_url === music.music_url;
+
+  const isPlaying = currentMusic.music_url === music.music_url && currentMusic.isPlaying;
   return (
     <div className="flex flex-row justify-items-end bg-pink-800 w-72 h-64 rounded-r-lg">
       <Link href={`/${music.id}`} className="flex flex-col items-center min-w-56">

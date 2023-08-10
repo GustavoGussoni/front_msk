@@ -16,8 +16,8 @@ const secondsToMinutes = (sec: number | undefined) => {
 };
 
 const Player = () => {
-  const audioRef = useRef<HTMLAudioElement>();
-  const { currentMusic, setCurrentMusic, playList } = usePlayer();
+  // const audioRef = useRef<HTMLAudioElement>();
+  const { currentMusic, setCurrentMusic, playList, audioRef } = usePlayer();
 
   useEffect(() => {
     audioRef.current = new Audio(currentMusic.music_url);
@@ -80,7 +80,7 @@ const Player = () => {
     <div className="fixed w-screen bottom-0 inset-x-0 h-24">
       <div className="py-3 bg-blue-900/70  text-gray-100">
         <div className="container flex">
-          <div className="flex items-center lg:w-3/12 gap-2 ml-4">
+          <div className="flex min-w-max items-center lg:w-3/12 gap-2 ml-4">
             <div>
               {currentMusic.cover_image ? (
                 <Image

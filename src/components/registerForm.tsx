@@ -5,8 +5,14 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 
 const RegisterForm = () => {
-  const { register, handleSubmit } = useForm<UserData>({
-    resolver: zodResolver(userSchema)
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { isValid, errors }
+  } = useForm<UserData>({
+    resolver: zodResolver(userSchema),
+    mode: "onBlur"
   });
 
   const { register: registerUser } = useAuth();
@@ -30,6 +36,7 @@ const RegisterForm = () => {
               className="user-form-input"
               {...register("name")}
             />
+            {errors.name && <span className="text-red-500">{errors.name.message}</span>}
           </div>
         </div>
 
@@ -44,6 +51,7 @@ const RegisterForm = () => {
               className="user-form-input"
               {...register("email")}
             />
+            {errors.email && <span className="text-red-500">{errors.email.message}</span>}
           </div>
         </div>
 
@@ -58,6 +66,7 @@ const RegisterForm = () => {
               className="user-form-input"
               {...register("password")}
             />
+            {errors.password && <span className="text-red-500">{errors.password.message}</span>}
           </div>
         </div>
 
